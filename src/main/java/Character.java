@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.enums.AbilityType;
 import main.java.enums.ClassType;
+import main.java.enums.RaceType;
 import main.java.enums.SkillType;
 import main.java.utils.AbilityUtils;
 import main.java.utils.SkillUtils;
@@ -17,6 +18,7 @@ public class Character {
     private ClassType classType;
     private Map<AbilityType, Integer> abilities;
     private Map<SkillType, Integer> skills;
+    private RaceType raceType;
 
     public Character(String name)
     {
@@ -41,5 +43,29 @@ public class Character {
 
     public Map<SkillType, Integer> getSkills() {
         return skills;
+    }
+
+    public RaceType getRaceType() {
+        return raceType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
+    }
+
+    public void setAbilities(Map<AbilityType, Integer> abilities) {
+        this.abilities = abilities;
+    }
+
+    public void setSkills(Map<SkillType, Integer> skills) {
+        this.skills = skills;
+    }
+
+    public void setRaceType(RaceType raceType) {
+        this.raceType = raceType;
     }
 }

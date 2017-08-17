@@ -5,8 +5,10 @@ import main.java.enums.ClassType;
 import main.java.enums.RaceType;
 import main.java.enums.SkillType;
 import main.java.utils.AbilityUtils;
+import main.java.utils.ClassUtils;
 import main.java.utils.SkillUtils;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -19,13 +21,14 @@ public class Character {
     private Map<AbilityType, Integer> abilities;
     private Map<SkillType, Integer> skills;
     private RaceType raceType;
+    private Collection<SkillType> classSkills;
 
     public Character(String name)
     {
         this.name = name;
         this.abilities = AbilityUtils.getAbilitySet();
         this.skills = SkillUtils.getSkillSet();
-        this.classType = ClassType.FIGHTER;
+        setClassType(ClassType.FIGHTER);
     }
 
     public String getName()
@@ -53,19 +56,36 @@ public class Character {
         this.name = name;
     }
 
-    public void setClassType(ClassType classType) {
+    public void setClassType(ClassType classType)
+    {
         this.classType = classType;
+        this.classSkills = ClassUtils.getClassSkills(this.classType);
     }
 
     public void setAbilities(Map<AbilityType, Integer> abilities) {
         this.abilities = abilities;
     }
 
-    public void setSkills(Map<SkillType, Integer> skills) {
+    public void setSkills(Map<SkillType, Integer> skills)
+    {
         this.skills = skills;
     }
 
     public void setRaceType(RaceType raceType) {
         this.raceType = raceType;
+    }
+
+    public void setClassSkills(Collection<SkillType> classSkills) {
+        this.classSkills = classSkills;
+    }
+
+    public Collection<SkillType> getClassSkills()
+    {
+        return classSkills;
+    }
+
+    public Map<SkillType, Integer> getTotalSkills()
+    {
+        return SkillUtils.getTotalSkillValues(this);
     }
 }

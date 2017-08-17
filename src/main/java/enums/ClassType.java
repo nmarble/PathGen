@@ -15,7 +15,10 @@ public enum ClassType {
     FIGHTER(Arrays.asList(AbilityType.STR, AbilityType.DEX)),
     MONK(Arrays.asList(AbilityType.STR, AbilityType.DEX, AbilityType.WIS)),
     PALADIN(Arrays.asList(AbilityType.STR, AbilityType.CHA)),
-    RANGER(Arrays.asList(AbilityType.STR, AbilityType.DEX, AbilityType.WIS));
+    RANGER(Arrays.asList(AbilityType.STR, AbilityType.DEX, AbilityType.WIS)),
+    ROGUE(Arrays.asList(AbilityType.DEX)),
+    SORCERER(Arrays.asList(AbilityType.CHA)),
+    WIZARD(Arrays.asList(AbilityType.INT));
 
     private Collection<AbilityType> primStats;
     ClassType(Collection<AbilityType> primStats)

@@ -6,11 +6,13 @@ import static main.java.enums.SkillType.*;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Random;
 
 /**
  * Created by Nick on 8/16/2017.
  */
 public class ClassUtils {
+    private static Random random = new Random();
     public static Collection<SkillType> getClassSkills(ClassType classType)
     {
         switch (classType)
@@ -58,5 +60,9 @@ public class ClassUtils {
             default:
                 return null;
         }
+    }
+    public static ClassType getRandomClass()
+    {
+        return ClassType.values()[random.nextInt(ClassType.values().length)];
     }
 }

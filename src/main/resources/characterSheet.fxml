@@ -5,45 +5,48 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<GridPane xmlns:fx="http://javafx.com/fxml">
-    <HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-        <Label text="NAME: "/>
-        <TextField fx:id="name"/>
-        <Label text="RACE: "/>
-        <TextField fx:id="race"/>
-        <Label text="CLASS: "/>
-        <TextField fx:id="classType"/>
+<?import javafx.scene.control.ScrollPane?>
+<ScrollPane>
+    <GridPane xmlns:fx="http://javafx.com/fxml">
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="NAME: "/>
+            <TextField fx:id="name"/>
+            <Label text="RACE: "/>
+            <TextField fx:id="race"/>
+            <Label text="CLASS: "/>
+            <TextField fx:id="classType"/>
 
-    </HBox>
-    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1">
-        <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS"/>
-            <ColumnConstraints hgrow="ALWAYS"/>
-            <ColumnConstraints hgrow="ALWAYS"/>
-        </columnConstraints>
-        <Label text="ABILITY SCORE" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Label text="MODIFIER" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        </HBox>
+        <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <Label text="ABILITY SCORE" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="MODIFIER" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-        <Label text="STR" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Label text="DEX" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Label text="CON" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <Label text="INT" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <Label text="WIS" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <Label text="CHA" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <Label text="STR" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label text="DEX" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label text="CON" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label text="INT" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Label text="WIS" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <Label text="CHA" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
 
-        <TextField fx:id="strValue" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <TextField fx:id="dexValue" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <TextField fx:id="conValue" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <TextField fx:id="intValue" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-        <TextField fx:id="wisValue" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-        <TextField fx:id="chaValue" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+            <TextField fx:id="strValue" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField fx:id="dexValue" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <TextField fx:id="conValue" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <TextField fx:id="intValue" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <TextField fx:id="wisValue" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <TextField fx:id="chaValue" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
-        <TextField fx:id="strMod" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <TextField fx:id="dexMod" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <TextField fx:id="conMod" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <TextField fx:id="intMod" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-        <TextField fx:id="wisMod" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <TextField fx:id="chaMod" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+            <TextField fx:id="strMod" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="dexMod" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+            <TextField fx:id="conMod" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            <TextField fx:id="intMod" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+            <TextField fx:id="wisMod" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+            <TextField fx:id="chaMod" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+        </GridPane>
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" fx:id="skills"/>
     </GridPane>
-    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2" fx:id="skills"/>
-</GridPane>
+</ScrollPane>

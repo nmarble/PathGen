@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import main.java.enums.ClassType;
 import main.java.enums.RaceType;
 import main.java.utils.AbilityUtils;
+import main.java.utils.ClassUtils;
+import main.java.utils.RaceUtils;
 import main.java.utils.SkillUtils;
 
 import java.io.IOException;
@@ -37,18 +39,31 @@ public class MainController {
         raceField.setItems(FXCollections.observableArrayList(RaceType.values()));
         classField.setItems(FXCollections.observableArrayList(ClassType.values()));
         okButton.setOnAction(event -> onOk());
+        okButton.setText("CREATE");
     }
 
     private void onOk()
     {
-        Character testChar = new Character(nameField.getText());
-        testChar.setClassType(classField.getValue());
-        testChar.setRaceType(raceField.getValue());
-        testChar.setAbilities(AbilityUtils.getRandomStats(testChar.getClassType()));
-        testChar.setSkills(SkillUtils.getRandomSkills(testChar));
+        Character newChar = new Character(nameField.getText());
+        if (classField.getValue() != null)
+        {
+            newChar.setClassType(classField.getValue());
+        }else
+        {
+            newChar.setClassType(ClassUtils.getRandomClass());
+        }
+        if (raceField.getValue() != null)
+        {
+            newChar.setRaceType(raceField.getValue());
+        }else
+        {
+            newChar.setRaceType(RaceUtils.getRandomRace());
+        }
+        newChar.setAbilities(AbilityUtils.getRandomStats(newChar.getClassType()));
+        newChar.setSkills(SkillUtils.getRandomSkills(newChar));
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
-            CharacterSheetController controller = new CharacterSheetController(testChar);
+            CharacterSheetController controller = new CharacterSheetController(newChar);
             fxmlLoader.setController(controller);
             Parent charWindow = (Parent) fxmlLoader.load();
             Stage stage = new Stage();

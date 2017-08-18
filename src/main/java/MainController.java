@@ -13,10 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.java.enums.ClassType;
 import main.java.enums.RaceType;
-import main.java.utils.AbilityUtils;
-import main.java.utils.ClassUtils;
-import main.java.utils.RaceUtils;
-import main.java.utils.SkillUtils;
+import main.java.utils.*;
 
 import java.io.IOException;
 
@@ -44,21 +41,10 @@ public class MainController {
 
     private void onOk()
     {
-        Character newChar = new Character(nameField.getText());
-        if (classField.getValue() != null)
-        {
-            newChar.setClassType(classField.getValue());
-        }else
-        {
-            newChar.setClassType(ClassUtils.getRandomClass());
-        }
-        if (raceField.getValue() != null)
-        {
-            newChar.setRaceType(raceField.getValue());
-        }else
-        {
-            newChar.setRaceType(RaceUtils.getRandomRace());
-        }
+        Character newChar = new Character();
+        newChar.setClassType(classField.getValue() != null ? classField.getValue() : ClassUtils.getRandomClass());
+        newChar.setRaceType(raceField.getValue() != null ? raceField.getValue() : RaceUtils.getRandomRace());
+        newChar.setName(nameField.getText().equals(null) ? nameField.getText() : NameUtils.getRandomName(newChar.getRaceType()));
         newChar.setAbilities(AbilityUtils.getRandomStats(newChar.getClassType()));
         newChar.setSkills(SkillUtils.getRandomSkills(newChar));
         try {

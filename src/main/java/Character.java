@@ -23,9 +23,9 @@ public class Character {
     private RaceType raceType;
     private Collection<SkillType> classSkills;
 
-    public Character(String name)
+    public Character()
     {
-        this.name = name;
+        this.name = "TempName";
         this.abilities = AbilityUtils.getAbilitySet();
         this.skills = SkillUtils.getSkillSet();
         setClassType(ClassType.FIGHTER);

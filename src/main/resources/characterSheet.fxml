@@ -17,6 +17,11 @@
         <HBox GridPane.columnIndex="0" GridPane.rowIndex="1">
             <Label text="SEX: "/>
             <TextField fx:id="sex"/>
+            <Label text="HP: "/>
+            <TextField fx:id="hp"/>
+            <Label text="LEVEL: "/>
+            <TextField fx:id="level"/>
+
         </HBox>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="2">
             <columnConstraints>

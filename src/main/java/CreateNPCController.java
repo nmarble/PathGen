@@ -48,6 +48,7 @@ public class CreateNPCController {
         newChar.setName(nameField.getText().equals(null) ? nameField.getText() : NameUtils.getRandomName(newChar.getSex(), newChar.getRaceType()));
         newChar.setAbilities(AbilityUtils.getRandomStats(newChar.getClassType()));
         newChar.setSkills(SkillUtils.getRandomSkills(newChar));
+        newChar.setStartingHP();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
             CharacterSheetController controller = new CharacterSheetController(newChar);

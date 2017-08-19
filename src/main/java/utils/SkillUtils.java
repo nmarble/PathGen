@@ -30,17 +30,16 @@ public class SkillUtils {
         SkillType[] classSkills = character.getClassSkills().toArray(new SkillType[character.getClassSkills().size()]);
         SkillType[] allSkills = SkillType.values();
         Collection<SkillType> trainedSkills = new ArrayList<>();
-        for (int index = 0; index < AbilityUtils.getModifiers(character.getAbilities()).get(AbilityType.INT) + 4; index++) {
+        for (int index = 0; index < AbilityUtils.getModifiers(character.getAbilities()).get(AbilityType.INT) + character.getClassType().getSkillPerLevel(); index++) {
             SkillType nextSkill = classSkills[random.nextInt(classSkills.length)];
-            while (!trainedSkills.contains(nextSkill)) {
+            while (trainedSkills.contains(nextSkill)) {
                 if (trainedSkills.size() < classSkills.length) {
                     nextSkill = classSkills[random.nextInt(classSkills.length)];
-                    trainedSkills.add(nextSkill);
                 } else {
                     nextSkill = allSkills[random.nextInt(classSkills.length)];
-                    trainedSkills.add(nextSkill);
                 }
             }
+            trainedSkills.add(nextSkill);
         }
         for (Iterator iterator = trainedSkills.iterator(); iterator.hasNext(); ) {
             SkillType skill = (SkillType) iterator.next();

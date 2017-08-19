@@ -20,6 +20,8 @@ public class Character {
     private RaceType raceType;
     private Collection<SkillType> classSkills;
     private Sex sex;
+    private int level;
+    private int HP;
 
     public Character() {
         this.name = "TempName";
@@ -27,6 +29,7 @@ public class Character {
         this.skills = SkillUtils.getSkillSet();
         setClassType(ClassType.FIGHTER);
         this.sex = Sex.M;
+        this.level = 1;
     }
 
     public String getName() {
@@ -88,5 +91,25 @@ public class Character {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public void setStartingHP() {
+        this.HP = classType.getHitDie().getMax() + AbilityUtils.getModifiers(abilities).get(AbilityType.CON);
     }
 }

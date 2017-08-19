@@ -25,6 +25,10 @@ public class CharacterSheetController implements Initializable {
     TextField classType;
     @FXML
     TextField sex;
+    @FXML
+    TextField hp;
+    @FXML
+    TextField level;
 
     @FXML
     TextField strValue;
@@ -66,21 +70,11 @@ public class CharacterSheetController implements Initializable {
         name.setText(character.getName());
         classType.setText(character.getClassType().name());
         race.setText(character.getRaceType().name());
-        Map<SkillType, Integer> totalSkills = character.getTotalSkills();
-        character.getSkills().forEach((skillType, value) -> {
-            int mod = SkillUtils.getModifier(skillType, character.getAbilities());
-            HBox skillLine = new HBox();
-            Label skillLabel = new Label(skillType.name());
-            TextField total = new TextField(totalSkills.get(skillType).toString());
-            TextField modifier = new TextField(Integer.toString(mod));
-            TextField ranks = new TextField(value.toString());
-            if (character.getClassSkills().contains(skillType)) {
-                skillLine.getChildren().add(new Text("*"));
-            }
-            skillLine.getChildren().addAll(skillLabel, total, modifier, ranks);
-            skills.getChildren().add(skillLine);
-        });
         sex.setText(character.getSex().getName());
+        level.setText(Integer.toString(character.getLevel()));
+        hp.setText(Integer.toString(character.getHP()));
+        setSkills();
+
     }
 
     private void setAbilities() {
@@ -100,5 +94,26 @@ public class CharacterSheetController implements Initializable {
         intMod.setText(modifiers.get(AbilityType.INT).toString());
         wisMod.setText(modifiers.get(AbilityType.WIS).toString());
         chaMod.setText(modifiers.get(AbilityType.CHA).toString());
+    }
+
+    private void setSkills() {
+        Map<SkillType, Integer> totalSkills = character.getTotalSkills();
+        character.getSkills().forEach((skillType, value) -> {
+            int mod = SkillUtils.getModifier(skillType, character.getAbilities());
+            HBox skillLine = new HBox();
+            Label skillLabel = new Label(skillType.name());
+            skillLabel.setPrefWidth(200);
+            TextField total = new TextField(totalSkills.get(skillType).toString());
+            TextField modifier = new TextField(Integer.toString(mod));
+            TextField ranks = new TextField(value.toString());
+            total.setMaxWidth(50);
+            modifier.setMaxWidth(50);
+            ranks.setMaxWidth(50);
+            if (character.getClassSkills().contains(skillType)) {
+                skillLabel.setText("*" + skillLabel.getText());
+            }
+            skillLine.getChildren().addAll(skillLabel, total, modifier, ranks);
+            skills.getChildren().add(skillLine);
+        });
     }
 }

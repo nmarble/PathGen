@@ -28,6 +28,8 @@ public class CharacterSheetController implements Initializable{
     TextField race;
     @FXML
     TextField classType;
+    @FXML
+    TextField sex;
 
     @FXML
     TextField strValue;
@@ -83,6 +85,7 @@ public class CharacterSheetController implements Initializable{
             skillLine.getChildren().addAll(skillLabel, total, modifier, ranks);
             skills.getChildren().add(skillLine);
         });
+        sex.setText(character.getSex().getName());
     }
 
     private void setAbilities()

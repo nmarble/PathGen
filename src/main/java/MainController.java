@@ -16,47 +16,31 @@ import main.java.enums.RaceType;
 import main.java.utils.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainController {
+    private static final Logger LOGGER = Logger.getLogger( CSVReader.class.getName() );
     @FXML
-    TextField nameField;
-
-    @FXML
-    ComboBox<RaceType> raceField;
-
-    @FXML
-    ComboBox<ClassType> classField;
-
-    @FXML
-    Button okButton;
+    Button npcButton;
 
     @FXML
     public void initialize()
     {
-        raceField.setItems(FXCollections.observableArrayList(RaceType.values()));
-        classField.setItems(FXCollections.observableArrayList(ClassType.values()));
-        okButton.setOnAction(event -> onOk());
-        okButton.setText("CREATE");
+        npcButton.setOnAction(event -> createNPC());
     }
 
-    private void onOk()
+    private void createNPC()
     {
-        Character newChar = new Character();
-        newChar.setClassType(classField.getValue() != null ? classField.getValue() : ClassUtils.getRandomClass());
-        newChar.setRaceType(raceField.getValue() != null ? raceField.getValue() : RaceUtils.getRandomRace());
-        newChar.setName(nameField.getText().equals(null) ? nameField.getText() : NameUtils.getRandomName(newChar.getRaceType()));
-        newChar.setAbilities(AbilityUtils.getRandomStats(newChar.getClassType()));
-        newChar.setSkills(SkillUtils.getRandomSkills(newChar));
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
-            CharacterSheetController controller = new CharacterSheetController(newChar);
-            fxmlLoader.setController(controller);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/createNPC.fxml"));
             Parent charWindow = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(charWindow));
             stage.show();
         }catch (IOException e) {
-            System.out.println(e);
+            LOGGER.log(Level.WARNING, "Cannot open NPC Creation" + e.getMessage());
         }
     }
 }

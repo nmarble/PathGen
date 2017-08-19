@@ -1,9 +1,6 @@
 package main.java;
 
-import main.java.enums.AbilityType;
-import main.java.enums.ClassType;
-import main.java.enums.RaceType;
-import main.java.enums.SkillType;
+import main.java.enums.*;
 import main.java.utils.AbilityUtils;
 import main.java.utils.ClassUtils;
 import main.java.utils.SkillUtils;
@@ -22,6 +19,7 @@ public class Character {
     private Map<SkillType, Integer> skills;
     private RaceType raceType;
     private Collection<SkillType> classSkills;
+    private Sex sex;
 
     public Character()
     {
@@ -29,6 +27,7 @@ public class Character {
         this.abilities = AbilityUtils.getAbilitySet();
         this.skills = SkillUtils.getSkillSet();
         setClassType(ClassType.FIGHTER);
+        this.sex = Sex.M;
     }
 
     public String getName()
@@ -87,5 +86,13 @@ public class Character {
     public Map<SkillType, Integer> getTotalSkills()
     {
         return SkillUtils.getTotalSkillValues(this);
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }

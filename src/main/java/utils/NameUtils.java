@@ -3,9 +3,12 @@ package main.java.utils;
 import main.java.CSVReader;
 import main.java.enums.FileLocations;
 import main.java.enums.RaceType;
+import main.java.enums.Sex;
 
 import java.util.Collection;
 import java.util.Random;
+import java.util.StringJoiner;
+
 import static main.java.enums.FileLocations.*;
 /**
  * Created by Nick on 8/17/2017.
@@ -13,38 +16,58 @@ import static main.java.enums.FileLocations.*;
 public class NameUtils {
     private static Random random = new Random();
 
-    public static String getRandomName(RaceType classType)
+    public static String getRandomName(Sex sex, RaceType classType)
     {
         switch (classType)
         {
-            case HUMAN:
-                return getRandomHumanName();
-            case HALF_ORC:
-                return getRandomOrcName();
+            case DWARF:
+                return capitializeName(getRandomDwarf(sex));
             case ELF:
-                return getRandomElfName();
+                return capitializeName(getRandomElfName());
+            case GNOME:
+                return capitializeName(getRandomGnome(sex));
             case HALF_ELF:
-                return getRandomHalfElf();
+                return capitializeName(getRandomHalfElf(sex));
+            case HALFLING:
+                return capitializeName(getRandomHalfling(sex));
+            case HALF_ORC:
+                return capitializeName(getRandomHalfOrcName(sex));
+            case HUMAN:
+                return capitializeName(getRandomHumanName(sex));
             default:
                 return "RANDOM";
         }
     }
 
-    private static String getRandomHumanName()
+    private static String getRandomHumanName(Sex sex)
     {
-        return getRandom(HUMAN_FIRST_NAME.getName()) + " " + getRandom(HUMAN_LAST_NAME.getName());
+        if(sex == Sex.M)
+        {
+            return getRandom(HUMAN_MALE_NAMES.getName()) + " " + getRandom(HUMAN_LAST_NAMES.getName());
+        }
+        else
+        {
+            return getRandom(HUMAN_FEMALE_NAMES.getName()) + " " + getRandom(HUMAN_LAST_NAMES.getName());
+        }
     }
 
-    private static String getRandomOrcName()
+    private static String getRandomHalfOrcName(Sex sex)
     {
         switch(random.nextInt(3))
         {
             case 0:
                 return getRandom(ORC_NAMES.getName());
             case 1:
-                return getRandom(HUMAN_FIRST_NAME.getName()) + " " + getRandom(ORC_NAMES.getName());
+                if(sex == Sex.M)
+                {
+                    return getRandom(HUMAN_MALE_NAMES.getName()) + " " + getRandom(ORC_NAMES.getName());
+                }else
+                {
+                    return getRandom(HUMAN_FEMALE_NAMES.getName()) + " " + getRandom(ORC_NAMES.getName());
+                }
+
             case 2:
-                return getRandom(ORC_NAMES.getName()) + " " + getRandom(HUMAN_LAST_NAME.getName());
+                return getRandom(ORC_NAMES.getName()) + " " + getRandom(HUMAN_LAST_NAMES.getName());
             default:
                 return getRandom(ORC_NAMES.getName());
         }
@@ -89,20 +112,105 @@ public class NameUtils {
         }
     }
 
-    private static String getRandomHalfElf()
+    private static String getRandomHalfElf(Sex sex)
     {
         switch(random.nextInt(4))
         {
             case 0:
                 return getRandomElfName();
             case 1:
-                return getRandom(HUMAN_FIRST_NAME.getName()) + " " + getRandomElfLast();
+                if(sex == Sex.M)
+                {
+                    return getRandom(HUMAN_MALE_NAMES.getName()) + " " + getRandomElfLast();
+                }else
+                {
+                    return getRandom(HUMAN_FEMALE_NAMES.getName()) + " " + getRandomElfLast();
+                }
             case 2:
-                return getRandomElfFirst() + " " + getRandom(HUMAN_LAST_NAME.getName());
+                return getRandomElfFirst() + " " + getRandom(HUMAN_LAST_NAMES.getName());
             case 3:
-                return getRandomHumanName();
+                return getRandomHumanName(sex);
             default:
                 return "";
         }
+    }
+    private static String getRandomDwarfFirst(Sex sex) {
+        switch (random.nextInt(2)) {
+            case 0:
+                if (sex == Sex.M) {
+                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_MALE_SUFFIX.getName());
+                } else {
+                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_FEMALE_SUFFIX.getName());
+                }
+            case 1:
+                if (sex == Sex.M) {
+                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_MALE_SUFFIX.getName()) + getRandom(DWARF_MALE_SUFFIX.getName());
+                } else {
+                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_FEMALE_SUFFIX.getName() + getRandom(DWARF_FEMALE_SUFFIX.getName()));
+                }
+            default:
+                return "";
+        }
+    }
+    private static String getRandomDwarf(Sex sex)
+    {
+        return getRandomDwarfFirst(sex) + " " + getRandom(DWARF_LAST_NAMES.getName());
+    }
+    private static String getRandomGnome(Sex sex)
+    {
+        if (sex == Sex.M)
+        {
+            return getRandom(GNOME_MALE_NAMES.getName()) + " " + getRandom(GNOME_LAST_NAMES.getName());
+        }else
+        {
+            return getRandom(GNOME_FEMALE_NAMES.getName()) + " " + getRandom(GNOME_LAST_NAMES.getName());
+        }
+    }
+    private static String getRandomHalfling(Sex sex)
+    {
+        if (sex == Sex.M)
+        {
+            return getRandomHalflingPrefix() + getRandom(HALFLING_MALE_NAMES.getName()) + getRandomHalflingSuffix() + " " + getRandomHalflingPrefix() + getRandom(HALFLING_LAST_NAMES.getName()) + getRandomHalflingSuffix();
+        }else
+        {
+            return getRandomHalflingPrefix() + getRandom(HALFLING_FEMALE_NAMES.getName()) + getRandomHalflingSuffix() + " " + getRandomHalflingPrefix() + getRandom(HALFLING_LAST_NAMES.getName()) + getRandomHalflingSuffix();
+        }
+    }
+
+    //Used to only have prefix some of the time
+    private static String getRandomHalflingPrefix()
+    {
+        int number = random.nextInt(10);
+        if(number == 0)
+        {
+            return getRandom(HALFLING_PREFIX.getName());
+        }else
+        {
+            return "";
+        }
+    }
+
+    //Used to only have suffix some of the time
+    private static String getRandomHalflingSuffix()
+    {
+        int number = random.nextInt(10);
+        if(number == 0)
+        {
+            return getRandom(HALFLING_SUFFIX.getName());
+        }else
+        {
+            return "";
+        }
+    }
+
+    private static String capitializeName(String name)
+    {
+        String finalName = "";
+        String[] splitName = name.split("\\s+");
+        for(String section : splitName)
+        {
+            finalName = finalName + " " + section.substring(0,1).toUpperCase() + section.substring(1).toLowerCase();
+        }
+        return finalName.trim();
     }
 }

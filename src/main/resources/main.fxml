@@ -11,9 +11,6 @@
 <BorderPane fx:controller="main.java.MainController"
             xmlns:fx="http://javafx.com/fxml">
     <VBox fillWidth="true" BorderPane.alignment="CENTER">
-        <TextField minWidth="100" prefWidth="100" fx:id="nameField"/>
-        <ComboBox minWidth="100" prefWidth="100" fx:id="raceField"/>
-        <ComboBox minWidth="100" prefWidth="100" fx:id="classField"/>
-        <Button minWidth="100" prefWidth="100" fx:id="okButton"/>
+        <Button text="Create NPC" minWidth="100" prefWidth="100" fx:id="npcButton"/>
     </VBox>
 </BorderPane>

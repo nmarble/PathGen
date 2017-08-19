@@ -13,7 +13,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/main/resources/main.fxml"));
         Parent root = loader.load();
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Pathfinder Generator");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }

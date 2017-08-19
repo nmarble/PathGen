@@ -41,13 +41,12 @@ public enum SkillType {
     USE_MAGIC_DEVICE(AbilityType.CHA);
 
     private AbilityType primaryStat;
-    SkillType(AbilityType prim)
-    {
+
+    SkillType(AbilityType prim) {
         this.primaryStat = prim;
     }
 
-    public AbilityType getPrimaryStat()
-    {
+    public AbilityType getPrimaryStat() {
         return primaryStat;
     }
 }

@@ -9,8 +9,8 @@ import java.util.Random;
  */
 public class RaceUtils {
     private static Random random = new Random();
-    public static RaceType getRandomRace()
-    {
+
+    public static RaceType getRandomRace() {
         return RaceType.values()[random.nextInt(RaceType.values().length)];
     }
 }

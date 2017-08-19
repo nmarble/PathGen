@@ -1,8 +1,6 @@
 package main.java;
 
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,16 +33,14 @@ public class CreateNPCController {
     Button okButton;
 
     @FXML
-    public void initialize()
-    {
+    public void initialize() {
         sexField.setItems(FXCollections.observableArrayList(Sex.values()));
         raceField.setItems(FXCollections.observableArrayList(RaceType.values()));
         classField.setItems(FXCollections.observableArrayList(ClassType.values()));
         okButton.setOnAction(event -> onCreate());
     }
 
-    private void onCreate()
-    {
+    private void onCreate() {
         Character newChar = new Character();
         newChar.setClassType(classField.getValue() != null ? classField.getValue() : ClassUtils.getRandomClass());
         newChar.setRaceType(raceField.getValue() != null ? raceField.getValue() : RaceUtils.getRandomRace());
@@ -60,7 +56,7 @@ public class CreateNPCController {
             Stage stage = new Stage();
             stage.setScene(new Scene(charWindow));
             stage.show();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
     }

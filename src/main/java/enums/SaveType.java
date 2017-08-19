@@ -11,14 +11,12 @@ public enum SaveType {
     private String name;
     private AbilityType primStat;
 
-    SaveType(String name, AbilityType prim)
-    {
+    SaveType(String name, AbilityType prim) {
         this.name = name;
         this.primStat = prim;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 

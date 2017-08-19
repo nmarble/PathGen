@@ -26,15 +26,14 @@ public enum FileLocations {
     ORC_NAMES("namefiles/Orc_Names.csv");
 
 
-    private String name;
     private final String BASELOCATION = "/main/resources/";
-    FileLocations(String name)
-    {
+    private String name;
+
+    FileLocations(String name) {
         this.name = name;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return BASELOCATION + name;
     }
 }

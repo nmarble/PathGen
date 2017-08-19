@@ -2,21 +2,21 @@ package main.java.utils;
 
 import main.java.enums.ClassType;
 import main.java.enums.SkillType;
-import static main.java.enums.SkillType.*;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
+
+import static main.java.enums.SkillType.*;
 
 /**
  * Created by Nick on 8/16/2017.
  */
 public class ClassUtils {
     private static Random random = new Random();
-    public static Collection<SkillType> getClassSkills(ClassType classType)
-    {
-        switch (classType)
-        {
+
+    public static Collection<SkillType> getClassSkills(ClassType classType) {
+        switch (classType) {
             case BARBARIAN:
                 return Arrays.asList(ACROBATICS, CLIMB, CRAFT, HANDLE_ANIMAL, INTIMIDATE, KNOWLEDGE_NATURE, PERCEPTION,
                         RIDE, SURVIVAL, SWIM);
@@ -61,8 +61,8 @@ public class ClassUtils {
                 return null;
         }
     }
-    public static ClassType getRandomClass()
-    {
+
+    public static ClassType getRandomClass() {
         return ClassType.values()[random.nextInt(ClassType.values().length)];
     }
 }

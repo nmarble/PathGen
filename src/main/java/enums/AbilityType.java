@@ -13,8 +13,7 @@ public enum AbilityType {
 
     private String fullName;
 
-    AbilityType(String fullName)
-    {
+    AbilityType(String fullName) {
         this.fullName = fullName;
     }
 

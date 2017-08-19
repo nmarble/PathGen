@@ -21,8 +21,8 @@ public enum ClassType {
     WIZARD(Arrays.asList(AbilityType.INT));
 
     private Collection<AbilityType> primStats;
-    ClassType(Collection<AbilityType> primStats)
-    {
+
+    ClassType(Collection<AbilityType> primStats) {
         this.primStats = primStats;
     }
 

@@ -10,8 +10,7 @@ import java.util.Random;
 public class SexUtils {
     private static Random random = new Random();
 
-    public static Sex getRandomSex()
-    {
+    public static Sex getRandomSex() {
         Sex[] sexes = Sex.values();
         return sexes[random.nextInt(sexes.length)];
     }

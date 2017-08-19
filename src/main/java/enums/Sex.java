@@ -9,8 +9,7 @@ public enum Sex {
 
     private String name;
 
-    Sex(String name)
-    {
+    Sex(String name) {
         this.name = name;
     }
 

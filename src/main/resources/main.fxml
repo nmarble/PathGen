@@ -1,15 +1,8 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<BorderPane fx:controller="main.java.MainController"
-            xmlns:fx="http://javafx.com/fxml">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.MainController">
     <VBox fillWidth="true" BorderPane.alignment="CENTER">
         <Button text="Create NPC" minWidth="100" prefWidth="100" fx:id="npcButton"/>
     </VBox>

@@ -1,18 +1,13 @@
 package main.java;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.java.enums.AbilityType;
-import main.java.enums.ClassType;
-import main.java.enums.RaceType;
 import main.java.enums.SkillType;
 import main.java.utils.AbilityUtils;
 import main.java.utils.SkillUtils;
@@ -21,7 +16,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CharacterSheetController implements Initializable{
+public class CharacterSheetController implements Initializable {
     @FXML
     TextField name;
     @FXML
@@ -60,13 +55,13 @@ public class CharacterSheetController implements Initializable{
     @FXML
     VBox skills;
     private Character character;
-    public CharacterSheetController(Character character)
-    {
+
+    public CharacterSheetController(Character character) {
         this.character = character;
     }
+
     @FXML
-    public void initialize(URL location, ResourceBundle resources)
-    {
+    public void initialize(URL location, ResourceBundle resources) {
         setAbilities();
         name.setText(character.getName());
         classType.setText(character.getClassType().name());
@@ -88,8 +83,7 @@ public class CharacterSheetController implements Initializable{
         sex.setText(character.getSex().getName());
     }
 
-    private void setAbilities()
-    {
+    private void setAbilities() {
         Map<AbilityType, Integer> abilities = character.getAbilities();
         Map<AbilityType, Integer> modifiers = AbilityUtils.getModifiers(abilities);
 

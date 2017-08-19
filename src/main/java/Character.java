@@ -21,8 +21,7 @@ public class Character {
     private Collection<SkillType> classSkills;
     private Sex sex;
 
-    public Character()
-    {
+    public Character() {
         this.name = "TempName";
         this.abilities = AbilityUtils.getAbilitySet();
         this.skills = SkillUtils.getSkillSet();
@@ -30,61 +29,56 @@ public class Character {
         this.sex = Sex.M;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
-    }
-
-    public ClassType getClassType() {
-        return classType;
-    }
-
-    public Map<AbilityType, Integer> getAbilities() {
-        return abilities;
-    }
-
-    public Map<SkillType, Integer> getSkills() {
-        return skills;
-    }
-
-    public RaceType getRaceType() {
-        return raceType;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setClassType(ClassType classType)
-    {
+    public ClassType getClassType() {
+        return classType;
+    }
+
+    public void setClassType(ClassType classType) {
         this.classType = classType;
         this.classSkills = ClassUtils.getClassSkills(this.classType);
+    }
+
+    public Map<AbilityType, Integer> getAbilities() {
+        return abilities;
     }
 
     public void setAbilities(Map<AbilityType, Integer> abilities) {
         this.abilities = abilities;
     }
 
-    public void setSkills(Map<SkillType, Integer> skills)
-    {
+    public Map<SkillType, Integer> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Map<SkillType, Integer> skills) {
         this.skills = skills;
+    }
+
+    public RaceType getRaceType() {
+        return raceType;
     }
 
     public void setRaceType(RaceType raceType) {
         this.raceType = raceType;
     }
 
+    public Collection<SkillType> getClassSkills() {
+        return classSkills;
+    }
+
     public void setClassSkills(Collection<SkillType> classSkills) {
         this.classSkills = classSkills;
     }
 
-    public Collection<SkillType> getClassSkills()
-    {
-        return classSkills;
-    }
-
-    public Map<SkillType, Integer> getTotalSkills()
-    {
+    public Map<SkillType, Integer> getTotalSkills() {
         return SkillUtils.getTotalSkillValues(this);
     }
 

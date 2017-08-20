@@ -1,7 +1,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.npc.CreateNPCController">
+            fx:controller="main.java.npc.fx.CreateNPCController">
     <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints minWidth="100"/>

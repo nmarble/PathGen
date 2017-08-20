@@ -1,4 +1,4 @@
-package main.java.npc;
+package main.java.npc.enums;
 
 import main.java.enums.AlignmentType;
 

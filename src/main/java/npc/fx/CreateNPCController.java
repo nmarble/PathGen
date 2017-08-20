@@ -1,4 +1,4 @@
-package main.java.npc;
+package main.java.npc.fx;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,11 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import main.java.Character;
-import main.java.CharacterSheetController;
 import main.java.enums.ClassType;
 import main.java.enums.RaceType;
 import main.java.enums.Sex;
+import main.java.npc.NPCCharacter;
 import main.java.utils.*;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class CreateNPCController {
     }
 
     private void onCreate() {
-        Character newChar = new Character();
+        NPCCharacter newChar = new NPCCharacter();
         newChar.setClassType(classField.getValue() != null ? classField.getValue() : ClassUtils.getRandomClass());
         newChar.setRaceType(raceField.getValue() != null ? raceField.getValue() : RaceUtils.getRandomRace());
         newChar.setSex(sexField.getValue() != null ? sexField.getValue() : SexUtils.getRandomSex());
@@ -51,6 +50,7 @@ public class CreateNPCController {
         newChar.setAbilities(AbilityUtils.getRandomStats(newChar.getClassType()));
         newChar.setSkills(SkillUtils.getRandomSkills(newChar));
         newChar.setStartingHP();
+        newChar.setAlignmentType(AlignmentUtils.getRandomAlignmentType());
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
             NPCSheetController controller = new NPCSheetController(newChar);

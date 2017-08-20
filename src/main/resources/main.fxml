@@ -2,7 +2,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.MainController">
+            fx:controller="main.java.fx.MainController">
     <VBox fillWidth="true" BorderPane.alignment="CENTER">
         <Button text="Create NPC" minWidth="100" prefWidth="100" fx:id="npcButton"/>
     </VBox>

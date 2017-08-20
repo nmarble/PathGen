@@ -1,4 +1,4 @@
-package main.java;
+package main.java.fx;
 
 import com.sun.corba.se.impl.orb.ParserTable;
 import javafx.fxml.FXML;
@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.java.Character;
 import main.java.enums.AbilityType;
 import main.java.enums.SaveType;
 import main.java.enums.SkillType;
@@ -100,11 +101,11 @@ public class CharacterSheetController implements Initializable {
         level.setText(Integer.toString(character.getLevel()));
         hp.setText(Integer.toString(character.getHP()));
         speed.setText(Integer.toString(character.getSpeed()));
+        alignment.setText(character.getAlignmentType().toString());
         setSkills();
         setSaves();
         setBaseAttack();
         setCombatManeuvers();
-        character.setAlignmentType(AlignmentUtils.getRandomAlignmentType());
     }
 
     private void removeExtraTabs() {

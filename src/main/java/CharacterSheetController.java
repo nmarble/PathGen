@@ -1,5 +1,6 @@
 package main.java;
 
+import com.sun.corba.se.impl.orb.ParserTable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,11 +9,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.java.enums.AbilityType;
+import main.java.enums.SaveType;
 import main.java.enums.SkillType;
 import main.java.utils.AbilityUtils;
 import main.java.utils.SkillUtils;
 
 import java.net.URL;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -29,6 +32,8 @@ public class CharacterSheetController implements Initializable {
     TextField hp;
     @FXML
     TextField level;
+    @FXML
+    TextField speed;
 
     @FXML
     TextField strValue;
@@ -58,6 +63,13 @@ public class CharacterSheetController implements Initializable {
 
     @FXML
     VBox skills;
+    @FXML
+    VBox saves;
+    @FXML
+    HBox baseAttack;
+    @FXML
+    VBox combatManeuvers;
+
     private Character character;
 
     public CharacterSheetController(Character character) {
@@ -73,8 +85,11 @@ public class CharacterSheetController implements Initializable {
         sex.setText(character.getSex().getName());
         level.setText(Integer.toString(character.getLevel()));
         hp.setText(Integer.toString(character.getHP()));
+        speed.setText(Integer.toString(character.getSpeed()));
         setSkills();
-
+        setSaves();
+        setBaseAttack();
+        setCombatManeuvers();
     }
 
     private void setAbilities() {
@@ -115,5 +130,63 @@ public class CharacterSheetController implements Initializable {
             skillLine.getChildren().addAll(skillLabel, total, modifier, ranks);
             skills.getChildren().add(skillLine);
         });
+    }
+
+    private void setSaves() {
+        Map<SaveType, Integer> baseSaves = character.getBaseSaves();
+        Map<AbilityType, Integer> modifiers = character.getAbilityMods();
+        baseSaves.forEach(((saveType, integer) -> {
+            HBox saveLine = new HBox();;
+            Label saveLabel = new Label(saveType.getName());
+            saveLabel.setPrefWidth(50);
+            TextField modifier = new TextField(Integer.toString(modifiers.get(saveType.getPrimStat())));
+            TextField base = new TextField(baseSaves.get(saveType).toString());
+            TextField total = new TextField(Integer.toString(baseSaves.get(saveType) + modifiers.get(saveType.getPrimStat())));
+            total.setMaxWidth(50);
+            modifier.setMaxWidth(50);
+            base.setMaxWidth(50);
+            saveLine.getChildren().addAll(saveLabel, total, base, modifier);
+            saves.getChildren().add(saveLine);
+        }));
+    }
+
+    private void setBaseAttack() {
+        Label baseLabel = new Label("Base Attack Bonus: ");
+        TextField base = new TextField();
+        for(Iterator iterator = character.getBaseAttack().iterator(); iterator.hasNext();)
+        {
+            int value = (int) iterator.next();
+            if (iterator.hasNext())
+            {
+                base.setText(base.getText() + Integer.toString(value) + "/");
+            } else
+            {
+                base.setText(base.getText() + Integer.toString(value));
+            }
+        }
+        baseAttack.getChildren().addAll(baseLabel, base);
+    }
+
+    private void setCombatManeuvers() {
+        Map<AbilityType, Integer> modifiers = character.getAbilityMods();
+        int baseA = character.getBestBaseAttack();
+        int strMod = modifiers.get(AbilityType.STR);
+        int dexMod = modifiers.get(AbilityType.DEX);
+        int sizeMod = character.getSize().getCombatMod();
+
+        Label cmbLabel = new Label("CMB");
+        Label cmdLabel = new Label("CMD");
+        TextField cmbBaseAttack = new TextField(Integer.toString(baseA));
+        TextField cmbSTRMod = new TextField(Integer.toString(strMod));
+        TextField cmbSize = new TextField(Integer.toString(sizeMod));
+        TextField cmbTotal = new TextField(Integer.toString(sizeMod + strMod + baseA));
+        TextField cmdBaseAttack = new TextField(Integer.toString(baseA));
+        TextField cmdSTRMod = new TextField(Integer.toString(strMod));
+        TextField cmdDEXMod = new TextField(Integer.toString(dexMod));
+        TextField cmdSize = new TextField(Integer.toString(sizeMod));
+        TextField cmdTotal = new TextField(Integer.toString(sizeMod+ dexMod + strMod + baseA + 10));
+        HBox cmb = new HBox(cmbLabel, cmbTotal, cmbBaseAttack, cmbSTRMod, cmbSize);
+        HBox cmd = new HBox(cmdLabel, cmdTotal, cmdBaseAttack, cmdSTRMod, cmdDEXMod, cmdSize);
+        combatManeuvers.getChildren().addAll(cmb, cmd);
     }
 }

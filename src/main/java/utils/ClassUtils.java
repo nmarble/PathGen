@@ -1,11 +1,11 @@
 package main.java.utils;
 
+import main.java.Character;
 import main.java.enums.ClassType;
+import main.java.enums.SaveType;
 import main.java.enums.SkillType;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
 import static main.java.enums.SkillType.*;
 
@@ -65,4 +65,120 @@ public class ClassUtils {
     public static ClassType getRandomClass() {
         return ClassType.values()[random.nextInt(ClassType.values().length)];
     }
+
+    public static Map<SaveType, Integer> getBaseSaves(Character character)
+    {
+        int level = character.getLevel();
+        switch (character.getClassType())
+        {
+            case BARBARIAN:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getSecondarySave(level));
+            case BARD:
+                return SaveUtils.createSaveSet(getSecondarySave(level), getPrimSave(level), getPrimSave(level));
+            case CLERIC:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getPrimSave(level));
+            case DRUID:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getPrimSave(level));
+            case FIGHTER:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getSecondarySave(level));
+            case MONK:
+                return SaveUtils.createSaveSet(getPrimSave(level), getPrimSave(level), getPrimSave(level));
+            case PALADIN:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getPrimSave(level));
+            case RANGER:
+                return SaveUtils.createSaveSet(getPrimSave(level), getPrimSave(level), getSecondarySave(level));
+            case ROGUE:
+                return SaveUtils.createSaveSet(getPrimSave(level), getSecondarySave(level), getSecondarySave(level));
+            case SORCERER:
+                return SaveUtils.createSaveSet(getSecondarySave(level), getSecondarySave(level), getPrimSave(level));
+            case WIZARD:
+                return SaveUtils.createSaveSet(getSecondarySave(level), getSecondarySave(level), getPrimSave(level));
+            default:
+                return null;
+        }
+    }
+    public static Collection<Integer> getBaseAttack(Character character)
+    {
+        int level = character.getLevel();
+        switch (character.getClassType())
+        {
+            case BARBARIAN:
+                return getBaseAttackBest(level);
+            case BARD:
+                return getBaseAttackNormal(level);
+            case CLERIC:
+                return getBaseAttackNormal(level);
+            case DRUID:
+                return getBaseAttackNormal(level);
+            case FIGHTER:
+                return getBaseAttackBest(level);
+            case MONK:
+                return getBaseAttackNormal(level);
+            case PALADIN:
+                return getBaseAttackBest(level);
+            case RANGER:
+                return getBaseAttackBest(level);
+            case ROGUE:
+                return getBaseAttackNormal(level);
+            case SORCERER:
+                return getBaseAttackWorst(level);
+            case WIZARD:
+                return getBaseAttackWorst(level);
+            default:
+                return null;
+        }
+    }
+    private static int getPrimSave(int level)
+    {
+        return 2 + (level / 2);
+    }
+    private static int getSecondarySave(int level)
+    {
+        return level / 3;
+    }
+    private static Collection<Integer> getBaseAttackBest(int level)
+    {
+        Collection<Integer> baseAttacks = new ArrayList<>();
+        baseAttacks.add(level);
+        if (level >= 6)
+        {
+            baseAttacks.add(level - 5);
+        }
+        if (level >= 11)
+        {
+            baseAttacks.add(level - 10);
+        }
+        if (level >= 16)
+        {
+            baseAttacks.add(level - 15);
+        }
+        return baseAttacks;
+    }
+    private static Collection<Integer> getBaseAttackNormal(int level)
+    {
+        Collection<Integer> baseAttacks = new ArrayList<>();
+        baseAttacks.add((int) (level * .75));
+        if (level >= 8)
+        {
+            baseAttacks.add((int) (level * .75) - 5);
+        }
+        if (level >= 15)
+        {
+            baseAttacks.add((int) (level * .75) - 10);
+        }
+
+        return baseAttacks;
+    }
+    private static Collection<Integer> getBaseAttackWorst(int level)
+    {
+        Collection<Integer> baseAttacks = new ArrayList<>();
+        baseAttacks.add((int) (level * .5));
+        if (level >= 12)
+        {
+            baseAttacks.add((int) (level * .5) - 5);
+        }
+        return baseAttacks;
+    }
+
 }
+

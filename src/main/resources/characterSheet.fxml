@@ -21,11 +21,12 @@
             <TextField fx:id="hp"/>
             <Label text="LEVEL: "/>
             <TextField fx:id="level"/>
-
+            <Label text="SPEED: "/>
+            <TextField fx:id="speed"/>
         </HBox>
         <GridPane GridPane.columnIndex="0" GridPane.rowIndex="2">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints/>
                 <ColumnConstraints hgrow="ALWAYS"/>
                 <ColumnConstraints hgrow="ALWAYS"/>
             </columnConstraints>
@@ -53,6 +54,9 @@
             <TextField fx:id="wisMod" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
             <TextField fx:id="chaMod" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
         </GridPane>
-        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="3" fx:id="skills"/>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="3" fx:id="saves"/>
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="4" fx:id="baseAttack"/>
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="6" fx:id="skills"/>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="5" fx:id="combatManeuvers"/>
     </GridPane>
 </ScrollPane>

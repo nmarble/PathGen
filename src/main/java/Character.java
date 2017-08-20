@@ -112,4 +112,31 @@ public class Character {
     public void setStartingHP() {
         this.HP = classType.getHitDie().getMax() + AbilityUtils.getModifiers(abilities).get(AbilityType.CON);
     }
+
+    public Map<SaveType, Integer> getBaseSaves() {
+        return ClassUtils.getBaseSaves(this);
+    }
+
+    public Map<AbilityType, Integer> getAbilityMods ()
+    {
+        return AbilityUtils.getModifiers(this.abilities);
+    }
+
+    public Collection<Integer> getBaseAttack()
+    {
+        return ClassUtils.getBaseAttack(this);
+    }
+
+    public int getBestBaseAttack()
+    {
+        return ClassUtils.getBaseAttack(this).stream().max(Integer::compare).get() + getSize().getAttackMod();
+    }
+
+    public SizeType getSize(){
+        return raceType.getSize();
+    }
+
+    public int getSpeed() {
+        return raceType.getSpeed();
+    }
 }

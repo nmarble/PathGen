@@ -22,6 +22,7 @@ public class Character {
     private Sex sex;
     private int level;
     private int HP;
+    private AlignmentType alignmentType;
 
     public Character() {
         this.name = "TempName";
@@ -138,5 +139,13 @@ public class Character {
 
     public int getSpeed() {
         return raceType.getSpeed();
+    }
+
+    public AlignmentType getAlignmentType() {
+        return alignmentType;
+    }
+
+    public void setAlignmentType(AlignmentType alignmentType) {
+        this.alignmentType = alignmentType;
     }
 }

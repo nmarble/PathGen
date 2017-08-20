@@ -4,6 +4,8 @@ import com.sun.corba.se.impl.orb.ParserTable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,6 +14,7 @@ import main.java.enums.AbilityType;
 import main.java.enums.SaveType;
 import main.java.enums.SkillType;
 import main.java.utils.AbilityUtils;
+import main.java.utils.AlignmentUtils;
 import main.java.utils.SkillUtils;
 
 import java.net.URL;
@@ -20,6 +23,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CharacterSheetController implements Initializable {
+    @FXML
+    TabPane tabPane;
+
+    @FXML
+    Tab npcDetailsTab;
+
     @FXML
     TextField name;
     @FXML
@@ -34,6 +43,8 @@ public class CharacterSheetController implements Initializable {
     TextField level;
     @FXML
     TextField speed;
+    @FXML
+    private TextField alignment;
 
     @FXML
     TextField strValue;
@@ -70,6 +81,8 @@ public class CharacterSheetController implements Initializable {
     @FXML
     VBox combatManeuvers;
 
+
+
     private Character character;
 
     public CharacterSheetController(Character character) {
@@ -78,6 +91,7 @@ public class CharacterSheetController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        removeExtraTabs();
         setAbilities();
         name.setText(character.getName());
         classType.setText(character.getClassType().name());
@@ -90,8 +104,12 @@ public class CharacterSheetController implements Initializable {
         setSaves();
         setBaseAttack();
         setCombatManeuvers();
+        character.setAlignmentType(AlignmentUtils.getRandomAlignmentType());
     }
 
+    private void removeExtraTabs() {
+        tabPane.getTabs().removeAll(npcDetailsTab);
+    }
     private void setAbilities() {
         Map<AbilityType, Integer> abilities = character.getAbilities();
         Map<AbilityType, Integer> modifiers = AbilityUtils.getModifiers(abilities);

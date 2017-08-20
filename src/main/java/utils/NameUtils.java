@@ -129,7 +129,7 @@ public class NameUtils {
                 if (sex == Sex.M) {
                     return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_MALE_SUFFIX.getName()) + getRandom(DWARF_MALE_SUFFIX.getName());
                 } else {
-                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_FEMALE_SUFFIX.getName() + getRandom(DWARF_FEMALE_SUFFIX.getName()));
+                    return getRandom(DWARF_PREFIX.getName()) + getRandom(DWARF_FEMALE_SUFFIX.getName()) + getRandom(DWARF_FEMALE_SUFFIX.getName());
                 }
             default:
                 return "";

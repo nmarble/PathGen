@@ -23,7 +23,7 @@ public class MainController {
 
     private void createNPC() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/createNPC.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/npc/createNPC.fxml"));
             Parent charWindow = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(charWindow));

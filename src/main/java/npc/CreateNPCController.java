@@ -1,4 +1,4 @@
-package main.java;
+package main.java.npc;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import main.java.Character;
+import main.java.CharacterSheetController;
 import main.java.enums.ClassType;
 import main.java.enums.RaceType;
 import main.java.enums.Sex;
@@ -51,7 +53,7 @@ public class CreateNPCController {
         newChar.setStartingHP();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
-            CharacterSheetController controller = new CharacterSheetController(newChar);
+            NPCSheetController controller = new NPCSheetController(newChar);
             fxmlLoader.setController(controller);
             Parent charWindow = (Parent) fxmlLoader.load();
             Stage stage = new Stage();

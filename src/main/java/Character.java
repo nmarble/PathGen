@@ -23,6 +23,7 @@ public class Character {
     private int level;
     private int HP;
     private AlignmentType alignmentType;
+    private int age;
 
     public Character() {
         this.name = "TempName";
@@ -147,5 +148,13 @@ public class Character {
 
     public void setAlignmentType(AlignmentType alignmentType) {
         this.alignmentType = alignmentType;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

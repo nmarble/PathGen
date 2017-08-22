@@ -16,6 +16,7 @@ import main.java.npc.NPCCharacter;
 import main.java.utils.*;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class CreateNPCController {
     @FXML
@@ -33,6 +34,7 @@ public class CreateNPCController {
     @FXML
     Button okButton;
 
+    private Random random = new Random();
     @FXML
     public void initialize() {
         sexField.setItems(FXCollections.observableArrayList(Sex.values()));
@@ -51,6 +53,7 @@ public class CreateNPCController {
         newChar.setSkills(SkillUtils.getRandomSkills(newChar));
         newChar.setStartingHP();
         newChar.setAlignmentType(AlignmentUtils.getRandomAlignmentType());
+        newChar.setAge(random.nextInt(31) + 18);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/resources/characterSheet.fxml"));
             NPCSheetController controller = new NPCSheetController(newChar);

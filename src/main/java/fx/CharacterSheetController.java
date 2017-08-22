@@ -81,6 +81,8 @@ public class CharacterSheetController implements Initializable {
     HBox baseAttack;
     @FXML
     VBox combatManeuvers;
+    @FXML
+    HBox thirdRow;
 
 
 
@@ -102,6 +104,7 @@ public class CharacterSheetController implements Initializable {
         hp.setText(Integer.toString(character.getHP()));
         speed.setText(Integer.toString(character.getSpeed()));
         alignment.setText(character.getAlignmentType().toString());
+        setThirdRow();
         setSkills();
         setSaves();
         setBaseAttack();
@@ -110,6 +113,11 @@ public class CharacterSheetController implements Initializable {
 
     private void removeExtraTabs() {
         tabPane.getTabs().removeAll(npcDetailsTab);
+    }
+    private void setThirdRow() {
+        Label ageLabel = new Label("AGE: ");
+        TextField ageField = new TextField(Integer.toString(character.getAge()));
+        thirdRow.getChildren().addAll(ageLabel, ageField);
     }
     private void setAbilities() {
         Map<AbilityType, Integer> abilities = character.getAbilities();
